@@ -92,3 +92,25 @@ MatrixName2=MatrixName.inv()
 
 print(VarName3, trace(MatrixName2)+sum(listName2))'''
     
+    
+def MatrixRows(StarterMatrixName: str, symb: float, m: int, n: int, f: int, lesserThan: float) -> str:
+  return f'''
+__MatrixName__={symb}*{StarterMatrixName}
+
+def FunctionName1(VarName1, VarName2):
+  MatrixName1=zeros(2)
+  for i in range(VarName1, VarName2+1):
+      MatrixName1+=__MatrixName__**i
+  return MatrixName1
+    
+def FunctionName2(VarName3):
+  return (eye(2)-__MatrixName__).inv() * __MatrixName__**VarName3
+
+for k in range(300):
+  if max(FunctionName2(k))<{lesserThan}:
+    print(k)
+    break
+print(max(FunctionName1({m}, {n})), max(FunctionName2({f})), VarName4)
+
+# В данной задаче необходимо (В оформлении) доказать, что матрица S сходится к B.
+'''
