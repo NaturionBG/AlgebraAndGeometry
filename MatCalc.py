@@ -14,3 +14,11 @@ def MatrixOps(__MatrixName1__: str, __MatrixName2__: str, OPS: list[str]) -> str
   print(max(__ResultName1__))
   print(sum(__ResultName2__))'''
   
+def MatrixEquations(name1: str, name2: str, name3: str = None) -> str:
+  if name3!=None:
+    return f'''pretty_print({name1}.inv()*{name2}*({name3}.inv()))'''
+  else:
+    return f'''Если у вас вид: AX=B, то код: pretty_print({name1}.inv()*{name2})
+    Если же вид: XA=B, то код: {name2}*({name1}.inv())'''
+    
+    
