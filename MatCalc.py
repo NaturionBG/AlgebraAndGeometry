@@ -47,7 +47,7 @@ for i in {permName}:
 print(name**{index})
   
 for varName in range(1, 100):
-  print(name**varName)
+  print(name**varName, varName)
   if name**varName == {btrace}:
     break'''
       
