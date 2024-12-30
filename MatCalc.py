@@ -21,4 +21,15 @@ def MatrixEquations(name1: str, name2: str, name3: str = None) -> str:
     return f'''Если у вас вид: AX=B, то код: pretty_print({name1}.inv()*{name2})
     Если же вид: XA=B, то код: pretty_print({name2}*({name1}.inv()))'''
     
+def Deter(name1: str, name2: str = None) -> str:
+  if name2!=None:
+    return f'''name3={name1}*{name2}
+    __equationName__ = Eq(det(name3), 0)
+    VarName=solve(__equationName__)
+    В оформлении задания на бумаге самостоятельно найдите, линейной комбинацией 
+    каких строк/столбцов является столбец/строка с параметром'''
+  else:
+    return f'''pretty_print(det({name1}))
+    В оформлении задания на бумаге распишите, как вы находили определитель.'''
+    
     
