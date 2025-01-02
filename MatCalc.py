@@ -4,6 +4,8 @@ from sympy.abc import x, Y
 
 def ComplexNumbers(index: int, MatrixName: str) -> str:
   return f'''
+# Первое решение \n  
+
 VarName1=x**{index} -1
 VarName2=nroots(VarName1)
 ListName1=[i for i in VarName2 if im(i)>0]
@@ -12,6 +14,24 @@ MatrixName1={MatrixName}
 VarName3=det(MatrixName1+NumberName1*eye(2))
 print(re(VarName3))
 print(im(VarName3))
+
+# Второе решение \n
+
+from math import cos, sin, pi
+stepen_kornya = {index}
+roots = []
+lambdich = []
+maxcosinus = 0
+A = {MatrixName}
+for i in range(stepen_kornya):
+    cosinus = cos(2 * i * pi / stepen_kornya)
+    sinus = sin(2 * i * pi / stepen_kornya)
+    if sinus > 0 and cosinus > maxcosinus:
+        maxcosinus = cosinus
+        lambdich = [cosinus, sinus]
+lambda_matrix = eye(2)
+lambda_matrix *= complex(lambdich[0], lambdich[1])
+print(round((lambda_matrix + A).det(), 3))
 '''
 
 
