@@ -54,6 +54,8 @@ for varName in range(1, 100):
 def BigMatrices(order: int, diagstart: int, diagend: int, a12: int = None, a21: int = None, row1end: int = None) -> str:
   if row1end!=None:
     return f'''
+# Первое решение:\n    
+
 VarName1={order} 
 Name1={diagstart}
 Name2={diagend}
@@ -90,11 +92,34 @@ VarName3=det(MatrixName)*VarName2
 listName2=[1/i for i in listName]
 MatrixName2=MatrixName.inv()
 
-print(VarName3, trace(MatrixName2)+sum(listName2))'''
+print(VarName3, trace(MatrixName2)+sum(listName2))
+
+# Второе решение:\n
+
+
+dlina = {order}
+a11 = {diagstart}
+ann = {diagend}
+a12 = {a12}
+a21 = {a21}
+
+spisochek = [i / (dlina - 1) * (ann - a11) + a11 for i in range(dlina)]
+diagonal = spisochek[0] * spisochek[1] - a12 * a21
+sled = (spisochek[0] + spisochek[1]) / diagonal
+for i in spisochek[2:]:
+  diagonal *= i
+  sled += 1 / i
+  
+  
+print(round(diagonal,3))
+print(round(sled,3))
+'''
     
     
 def MatrixRows(StarterMatrixName: str, symb: float, m: int, n: int, f: int, lesserThan: float) -> str:
   return f'''
+Первое решение:\n
+  
 __MatrixName__={symb}*{StarterMatrixName}
 
 def FunctionName1(VarName1, VarName2):
@@ -113,4 +138,50 @@ for k in range(300):
 print(max(FunctionName1({m}, {n})), max(FunctionName2({f})), VarName4)
 
 # В данной задаче необходимо (В оформлении) доказать, что матрица S сходится к B.
+
+# Второе решение:\n
+
+__MatrixName__={symb}*{StarterMatrixName}
+
+def s(m,n):
+  S = zeros(2)
+  for i in range(m, n + 1):
+    S += A**i
+  return S
+  
+def b(m):
+    B = ((I - A).inv()) * (A**m)
+    return B
+  
+print(max(s({m}, {n})))
+print(max(b({f})))
+
+
+for i in range(500):
+    if max(b(i)) < {lesserThan}:
+        print(i)
+        break
 '''
+
+
+def arifm_and_geom_matrix_progression(n: int, a11: float, a1n: float, ann: float):
+  f'''
+a11 = {a11}
+a1n = {a1n}
+vsego_symbols = {n}
+ann = {ann}
+q = solve(ann / x ** vsego_symbols - 1, x, minimal=True)
+d = (a1n - a11) / vsego_symbols
+spis_stroki = [1]
+spis_diag = [1]
+for i in range(vsego_symbols-1):
+    spis_stroki.append(spis_stroki[-1] + d)
+    spis_diag.append(spis_diag[-1] * q)
+
+spis_stroki_B = [1]
+spis_diag_B = [1]
+for i in range(vsego_symbols-1):
+    spis_diag_B.append(1 / spis_diag[1:][i])
+    spis_stroki_B.append(-spis_stroki[1:][i] / spis_diag[1:][i])
+
+print(round(min(min(spis_stroki_B), min(spis_diag_B)), 3), round(sum(spis_diag_B) + sum(spis_stroki_B) - 1, 3))'''
