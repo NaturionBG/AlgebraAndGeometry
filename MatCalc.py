@@ -62,7 +62,6 @@ def arrayy(st: str) -> None:
   ''':
     print('Cartesian(Point1: str, Point2: str, Point3: str) - 2D геометрия')
   else:
-    print('Не найдено')
     arrayy(input())
   
   
