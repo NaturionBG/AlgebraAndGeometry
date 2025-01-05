@@ -1,7 +1,7 @@
 from sympy import *
 from sympy.abc import x, y
 
-def EigenValsAndVects(MatrixName:str) -> str:
+def EigenValsAndVects(MatrixName:Matrix) -> str:
   return f'''
 # Первое решение:\n
   
@@ -32,13 +32,13 @@ print(round(re(new_vector_X[1]), 3))
 '''
 
 
-def Cartesian(Point1: str, Point2: str, Point3: str) -> str:
+def Cartesian(Point1: list, Point2: list, Point3: list) -> str:
   return f'''
 # Первое решение:\n
   
-PointName1={Point1}
-PointName2={Point2}
-PointName3={Point3}
+PointName1=Matrix({Point1})
+PointName2=Matrix({Point2})
+PointName3=Matrix({Point3})
 PointName4=Matrix([x, y])
 LineName1=PointName3-PointName2
 LineName2=PointName4-PointName1
@@ -57,9 +57,9 @@ print(VarName3)
 
 # Второе решение:\n
 
-A = {list(Point1)}
-B = {list(Point2)}
-C = {list(Point3)}
+A = {Point1}
+B = {Point2}
+C = {Point3}
 urav_pryamoy_BC = ((x - B[0]) / (C[0] - B[0])) - ((y - B[1]) / (C[1] - B[1]))
 
 tochka_x = A[0] + urav_pryamoy_BC.coeff(x) * t
