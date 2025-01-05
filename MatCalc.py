@@ -2,9 +2,8 @@ from sympy import *
 from sympy.abc import x, Y
 
 
-def menu() -> None:
-  print('''
-* ВСЕ ФУНКЦИИ ВОЗВРАЩАЮТ НЕ РЕШЕНИЕ ЗАДАНИЯ, А КОД, КОТОРЫЙ ЕЁ РЕШАЕТ!
+def arrayy(st: str) -> None:
+  return ('''
 
 1. Есть функции gaussian_elim, gaussian_elim_parameters (Вряд ли кому-либо нужны) - на вход подайте строковое название заранее созданной
 вами матрицы, следуйте дальнейшему алгоритму решения.   
@@ -39,3 +38,5 @@ def menu() -> None:
 11. Функция arifm_and_geom_matrix_progression(n: int, a11: float, a1n: float, ann: float). Решает задание
 с геом. прогр. в пункте 1) и арифм. прогр. в пункте 2) (Аналог 7.5). Принимаемые аргументы ясны как день
 ''')
+  
+
