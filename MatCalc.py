@@ -2,8 +2,8 @@ from sympy import *
 from sympy.abc import x, Y
 
 
-def ComplexNumbers(index: int, MatrixName: str) -> str:
-  return f'''
+def ComplexNumbers(num:int, index: int, MatrixName: str) -> str:
+  return [f'''
 # Первое решение \n  
 
 VarName1=x**{index} -1
@@ -14,7 +14,8 @@ MatrixName1={MatrixName}
 VarName3=det(MatrixName1+NumberName1*eye(2))
 print(re(VarName3))
 print(im(VarName3))
-
+''',
+f'''
 # Второе решение \n
 
 from math import cos, sin, pi
@@ -32,15 +33,15 @@ for i in range(stepen_kornya):
 lambda_matrix = eye(2)
 lambda_matrix *= complex(lambdich[0], lambdich[1])
 print(round((lambda_matrix + A).det(), 3))
-'''
+'''][num-1]
 
 
-def Polynomials(pol: any) -> str:
-  return f'''
+def Polynomials(num:int, pol: any) -> str:
+  return [f'''
 VarName1={pol}
 VarName2=nroots(VarName1)
 ListName1=[abs(i) for i in VarName2]
 NumberName1=max(VarName2, key=lambda x: re(x))
 print(sum(ListName1))
 print(re(NumberName1))
-'''
+'''][num-1]
