@@ -1,8 +1,8 @@
 from sympy import *
 from sympy.abc import x, y
 
-def EigenValsAndVects(MatrixName:Matrix) -> str:
-  return f'''
+def EigenValsAndVects(num: int, MatrixName:Matrix) -> str:
+  return [f'''
 # Первое решение:\n
   
 __MatrixName1__={MatrixName}
@@ -12,7 +12,8 @@ EndMatrixName=(__MatrixName1__-NumberName1*eye(3))*VectorName
 solutionName=solve([EndMatrixName[0], EndMatrixName[1]])
 print(im(Z))
 print(re(solutionName[x]))
-
+''',
+f'''
 # Второе решение:\n
 
 A = {MatrixName}
@@ -29,11 +30,11 @@ new_vector_X = Matrix(3, 1, new_vector_values)
 
 print(round(im(Z).n(), 3))
 print(round(re(new_vector_X[1]), 3))
-'''
+'''][num-1]
 
 
-def Cartesian(Point1: list, Point2: list, Point3: list) -> str:
-  return f'''
+def Cartesian(num:int, Point1: list, Point2: list, Point3: list) -> str:
+  return [f'''
 # Первое решение:\n
   
 PointName1=Matrix({Point1})
@@ -54,7 +55,8 @@ VarName3=(LineName2.dot(LineName2))**0.5
 print(solutionName2[x].n())
 print(solutionName2[y].n())
 print(VarName3)
-
+''',
+f'''
 # Второе решение:\n
 
 A = {Point1}
@@ -71,4 +73,4 @@ urav_pryamoy_BC.subs({{'x:tochka_x, y:tochka_y'}})
 print(round(D[0], 3))
 print(round(D[1], 3))
 print(round(Point(A).distance(D), 3))
-'''
+'''][num-1]
