@@ -38,7 +38,7 @@ VarName=solve(__equationName__)
 pretty_print(det({name1}))
 В оформлении задания на бумаге распишите, как вы находили определитель.'''][num-1]
     
-def Permute(permName: str, index: int, btrace: int, num: int) -> str:
+def Permute(num: int, permName: str, index: int, btrace: int) -> str:
   return [f'''
 name=Matrix([])
 for i in {permName}:
@@ -120,7 +120,7 @@ print(round(sled,3))
 '''][num-1]
     
     
-def MatrixRows(StarterMatrixName: str, symb: float, sm: int, sn: int, bm: int, lesserThan: float, num: int) -> str:
+def MatrixRows(num: int, StarterMatrixName: str, symb: float, sm: int, sn: int, bm: int, lesserThan: float) -> str:
   return [f'''
 Первое решение:\n
   
