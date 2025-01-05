@@ -66,6 +66,5 @@ def arrayy(st: str) -> None:
     arrayy(input())
   
   
-  
-arrayy('для многочлена p(x)')
+
   
