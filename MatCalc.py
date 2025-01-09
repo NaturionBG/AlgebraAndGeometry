@@ -2,7 +2,7 @@ from sympy import *
 from sympy.abc import x, Y
 
 
-def ComplexNumbers(num:int, index: int, MatrixName: str) -> str:
+def ComplexNumbers(num:int, index: int, MatrixName: Matrix) -> str:
   return [f'''
 # Первое решение \n  
 
