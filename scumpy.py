@@ -311,3 +311,14 @@ NumberName1=max(VarName2, key=lambda x: re(x))
 print(sum(ListName1))
 print(re(NumberName1))
 '''][num-1]
+
+
+def gaussian_elim(num:int, __MatrixName__: str) -> str:
+  return [f'''
+  pretty_print({__MatrixName__}.rref())
+  '''][num-1]
+
+def gaussian_elim_parameters(num:int, __MatrixName__: str) -> str:
+  return [f'''pretty_print({__MatrixName__}.echelon_form())
+Если Необходимо решить непростое уравнение в echelon_form - функция solve() поможет.
+'''][num-1]
