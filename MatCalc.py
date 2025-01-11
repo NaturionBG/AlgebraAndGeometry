@@ -44,7 +44,7 @@ def Permute(num: int, permName: str, index: int, btrace: int) -> str:
 # первое решение\n
 name=Matrix([])
 for i in {permName}:
-  name=name.hstack(name, Matrix([0 if k+1!=i else 1 for k in range(len(perm))]))
+  name=name.hstack(name, Matrix([0 if k+1!=i else 1 for k in range({len(permName)})]))
   
 print(trace(name**{index}))
   
@@ -57,7 +57,7 @@ for varName in range(1, 100):
 f'''
 # второе решение\n  
 A=zeros(len({permName}))
-for i in range(0,12):
+for i in range({len(permName)}):
     A[{permName}[i]-1,i]=1
 print(trace(A**{index}))
 m=1
