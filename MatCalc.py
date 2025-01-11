@@ -39,7 +39,9 @@ pretty_print(det({name1}))
 В оформлении задания на бумаге распишите, как вы находили определитель.'''][num-1]
     
 def Permute(num: int, permName: str, index: int, btrace: int) -> str:
+
   return [f'''
+# первое решение\n
 name=Matrix([])
 for i in {permName}:
   name=name.hstack(name, Matrix([0 if k+1!=i else 1 for k in range(len(perm))]))
@@ -49,8 +51,21 @@ print(trace(name**{index}))
 for varName in range(1, 100):
   print(name**varName, varName)
   if trace(name**varName) == {btrace}:
-    break'''][num-1]
-      
+    break
+''',
+          
+f'''
+# второе решение\n  
+A=zeros(len({permName}))
+for i in range(0,12):
+    A[{permName}[i]-1,i]=1
+print(trace(A**{index}))
+m=1
+while trace(A**m)!={btrace}:
+  m+=1
+print(m)
+  '''][num-1]
+    
 def BigMatrices(num: int, order: int, diagstart: int, diagend: int, a12: int = None, a21: int = None, row1end: int = None) -> str:
   if row1end!=None:
     return [f'''
