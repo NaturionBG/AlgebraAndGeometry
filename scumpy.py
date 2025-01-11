@@ -206,10 +206,6 @@ for i in range(vsego_symbols-1):
 
 print(round(min(min(spis_stroki_B), min(spis_diag_B)), 3), round(sum(spis_diag_B) + sum(spis_stroki_B) - 1, 3))'''
 
-
-from sympy import *
-from sympy.abc import x, Y
-
 def arrayy(st: str) -> None:
   if st.lower() in '''
   решите систему уравнений В ответе укажите найденные значения неизвестных. 1) значение 2) значение 3) значение
