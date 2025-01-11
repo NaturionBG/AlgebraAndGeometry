@@ -44,11 +44,11 @@ name=Matrix([])
 for i in {permName}:
   name=name.hstack(name, Matrix([0 if k+1!=i else 1 for k in range(len(perm))]))
   
-print(name**{index})
+print(trace(name**{index}))
   
 for varName in range(1, 100):
   print(name**varName, varName)
-  if name**varName == {btrace}:
+  if trace(name**varName) == {btrace}:
     break'''][num-1]
       
 def BigMatrices(num: int, order: int, diagstart: int, diagend: int, a12: int = None, a21: int = None, row1end: int = None) -> str:
