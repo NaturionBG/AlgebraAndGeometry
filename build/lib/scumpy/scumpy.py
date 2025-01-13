@@ -66,7 +66,7 @@ while trace(A**m)!={btrace}:
 print(m)
   '''][num-1]
     
-def BigMatrices(num: int, order: int, diagstart: int, diagend: int, a12: int = None, a21: int = None, row1end: int = None) -> str:
+def BigMatrices(num: int, order: int, diagstart: float, diagend: float, a12: float = None, a21: float = None, row1end: float = None) -> str:
   if row1end!=None:
     return [f'''
 # Первое решение:\n   
@@ -86,7 +86,28 @@ inversed_diagListName=[1/i for i in diagonListName]
 inversed_rowListName=[-i/k for i, k in zip(rowListName, diagonListName)]
 print(sum(inversed_diagListName)+sum(inversed_rowListName[1:]))
 print(min([min(inversed_diagListName), min(inversed_rowListName)]))
-'''][num-1]
+''',
+
+f'''
+a11 = {diagstart}
+a1n = {row1end}
+vsego_symbols = {order}
+ann = {diagend}
+q = solve(ann / x ** vsego_symbols - 1, x, minimal=True)
+d = (a1n - a11) / vsego_symbols
+spis_stroki = [1]
+spis_diag = [1]
+for i in range(vsego_symbols-1):
+    spis_stroki.append(spis_stroki[-1] + d)
+    spis_diag.append(spis_diag[-1] * q)
+
+spis_stroki_B = [1]
+spis_diag_B = [1]
+for i in range(vsego_symbols-1):
+    spis_diag_B.append(1 / spis_diag[1:][i])
+    spis_stroki_B.append(-spis_stroki[1:][i] / spis_diag[1:][i])
+
+print(round(min(min(spis_stroki_B), min(spis_diag_B)), 3), round(sum(spis_diag_B) + sum(spis_stroki_B) - 1, 3))'''][num-1]
   else:
     return [f'''
 # Первое решение:\n 
@@ -242,11 +263,11 @@ def arrayy(st: str) -> None:
   матрица имеет размер n×n, где n=. известно, что ее диагональные элементы образуют арифметическую прогрессию с начальным элементом a1,1= и конечным элементом an,n=. Также известно, что все элементы матрицы a, расположенные вне главной диагонали, равны нулю за исключением двух элементов: a1,2= и a2,1=. Найдите: 1) определитель матрицы a; 2) след матрицы, обратной к a.
   матрица имеет размер n×n, где n=. известно, что: 1) диагональные элементы образуют геометрическую прогрессию с начальным элементом a1,1= и конечным элементом an,n=; 2) элементы первой строки образуют арифметическую прогрессию с конечным элементом a1,n=; 3) все элементы матрицы a, расположенные вне главной диагонали и вне первой строки, равны нулю. найдите обратную матрицу b=a−1 и укажите в ответе: 1) наименьший элемент матрицы b; 2) сумму элементов матрицы b.
   ''':
-    print('BigMatrices(num: int = [1, 2], order: int, diagstart: int, diagend: int, a12: int = None, a21: int = None, row1end: int = None) - большие матрицы')
+    print('BigMatrices(num: int = [1, 2], order: int, diagstart: float, diagend: float, a12: float = None, a21: float = None, row1end: float = None) - большие матрицы')
   elif st.lower() in '''
   даны матрицы: i= , a=, где y=. Пусть sm,n=∑ni=mai,bm=(i-a)-1am. 1) найдите наибольший элемент матрицы s=s3,90. 2) найдите наибольший элемент матрицы b=b3. 3) найдите наименьшее k, такое, что при любом n>k наибольший элемент матрицы sk,n меньше
   ''':
-    print('MatrixRows(num: int = [1, 2], StarterMatrixName: str, symb: float, m: int, n: int, f: int, lesserThan: float) - матричные ряды')
+    print('MatrixRows(num: int = [1, 2], StarterMatrixName: str, symb: float, sm: int, sn: int, bm: int, lesserThan: float) - матричные ряды')
   elif st.lower() in '''
   пусть комплексный корень из 1 степени, такой, что его мнимая часть больше 0, а действительная часть максимальна среди подобных корней с положительной мнимой частью. даны матрицы: i=, a=. найдите определитель матрицы a+λi и укажите в ответе: 1) действительную часть этого определитля; 2) его мнимую часть
   ''':
