@@ -44,13 +44,13 @@ def Permute(num: int, permName: str, index: int, btrace: int) -> str:
 # первое решение\n
 name=Matrix([])
 for i in {permName}:
-  name=name.hstack(name, Matrix([0 if k+1!=i else 1 for k in range(len({permName})]))
+  name=name.hstack(name, Matrix([0 if k+1!=i else 1 for k in range(len({permName}))]))
   
 print(trace(name**{index}))
   
 for varName in range(1, 100):
-  print(name**varName, varName)
   if trace(name**varName) == {btrace}:
+    print(varName)
     break
 ''',
           
@@ -83,7 +83,7 @@ diagonListName=[Name1*(VarName3**i) for i in range(VarName1)]
 rowListName=[Name1 + VarName2*i for i in range(VarName1)]
 
 inversed_diagListName=[1/i for i in diagonListName]
-inversed_rowListName=[-i/k for i, k in zip(rowListName, diagonListName)]
+inversed_rowListName=[-i/(k*Name1) for i, k in zip(rowListName, diagonListName)]
 print(sum(inversed_diagListName)+sum(inversed_rowListName[1:]))
 print(min([min(inversed_diagListName), min(inversed_rowListName)]))
 ''',
@@ -158,7 +158,7 @@ print(round(sled,3))
     
 def MatrixRows(num: int, StarterMatrixName: str, symb: float, sm: int, sn: int, bm: int, lesserThan: float) -> str:
   return [f'''
-Первое решение:\n
+# Первое решение:\n
   
 __MatrixName__={symb}*{StarterMatrixName}
 
@@ -175,14 +175,13 @@ for k in range(300):
   if max(FunctionName2(k))<{lesserThan}:
     print(k)
     break
-print(max(FunctionName1({sm}, {sn})), max(FunctionName2({bm})), VarName4)
+print(max(FunctionName1({sm}, {sn})), max(FunctionName2({bm})))
 
-# В данной задаче необходимо (В оформлении) доказать, что матрица S сходится к B.
 
 ''',
 f'''
 # Второе решение:\n
-__MatrixName__={symb}*{StarterMatrixName}
+A={symb}*{StarterMatrixName}
 
 def s(m,n):
   S = zeros(2)
@@ -191,7 +190,7 @@ def s(m,n):
   return S
   
 def b(m):
-    B = ((I - A).inv()) * (A**m)
+    B = ((eye(2) - A).inv()) * (A**m)
     return B
   
 print(max(s({sm}, {sn})))
@@ -354,7 +353,7 @@ NumberName1=max(list(__MatrixName1__.eigenvals().keys()), key=lambda x: im(x)).n
 VectorName=Matrix([1, x, y])
 EndMatrixName=(__MatrixName1__-NumberName1*eye(3))*VectorName
 solutionName=solve([EndMatrixName[0], EndMatrixName[1]])
-print(im(Z))
+print(im(NumberName1))
 print(re(solutionName[x]))
 ''',
 f'''
@@ -389,7 +388,7 @@ LineName1=PointName3-PointName2
 LineName2=PointName4-PointName1
 VarName1, VarName2 = symbols('VarName1, VarName2')
 __eqName1__=Eq(VarName1*PointName2[0] + VarName2, PointName2[1])
-__eqName2__=Eq(VarName1*PointName3[0] + VarName2, PointName2[1])
+__eqName2__=Eq(VarName1*PointName3[0] + VarName2, PointName3[1])
 solutionName1=solve([__eqName1__, __eqName2__])
 __eqName3__=Eq(solutionName1[VarName1]*x + solutionName1[VarName2], y)
 __eqName4__=Eq(LineName2.dot(LineName1), 0)
@@ -412,7 +411,7 @@ tochka_x = A[0] + urav_pryamoy_BC.coeff(x) * t
 tochka_y = A[1] + urav_pryamoy_BC.coeff(y) * t
 t_numerical = solve(urav_pryamoy_BC.subs({{x:tochka_x, y:tochka_y}}))[0]
 D = [tochka_x.subs({{t:t_numerical}}), tochka_y.subs({{t:t_numerical}})]
-urav_pryamoy_BC.subs({{'x:tochka_x, y:tochka_y'}})
+urav_pryamoy_BC.subs({{x:tochka_x, y:tochka_y}})
 
 print(round(D[0], 3))
 print(round(D[1], 3))
