@@ -1262,16 +1262,16 @@ print(f'Variance of X: {X.var()}')
     '''
   elif snippet in 'Случайная величина X с равной вероятностью принимает все целые значения от до. Пусть Y=|X−|. Найдите: 1) наименьшее число Q1Min, для которого P(Y⩽Q1Min)⩾0,25; 2) наибольшее число Q1Max, для которого P(Y⩾Q1Max)⩾0,75; 3) наименьшее число Q3Min, для которого P(Y⩽Q3Min)⩾0,75; 4) наибольшее число Q3Ma, для которого P(Y⩾Q3Max)⩾0,25.':
     A = '''
-E = 0.00000001
 dct = defaultdict(int)
 
-ch = list(range(1, 129))
+ch = list(range(1, 41))
 
 for X in ch:
-  dct[abs(X-89.5)] +=1/len(ch)
+  dct[abs(X-29.5)] +=1/len(ch)
 
 
 Y = rv_discrete(values=(list(dct.keys()), list(dct.values())))
+xk = Y.xk.tolist()
 Q1mn = []
 Q3mn = []
 Q1mx = []
@@ -1281,11 +1281,10 @@ for i in dct.keys():
       Q1mn.append(i)
     if Y.cdf(i) >= 0.75:
       Q3mn.append(i)
-    if Y.sf(i - E) >= 0.75:
+    if round(Y.sf(xk[xk.index(i)-1]), 5) >= 0.75:
       Q1mx.append(i)
-    if Y.sf(i - E) >= 0.25:
+    if round(Y.sf(xk[xk.index(i)-1]), 5) >= 0.25:
       Q3mx.append(i)
-print(Y.sf(16.5))
 print(f'Q1Min = {min(Q1mn)}')
 print(f'Q1Max = {max(Q1mx)}')
 print(f'Q3Min = {min(Q3mn)}')
@@ -2517,16 +2516,16 @@ print(f'Variance of X: {X.var()}')
     '''
   elif snippet in 'Случайная величина X с равной вероятностью принимает все целые значения от до. Пусть Y=|X−|. Найдите: 1) наименьшее число Q1Min, для которого P(Y⩽Q1Min)⩾0,25; 2) наибольшее число Q1Max, для которого P(Y⩾Q1Max)⩾0,75; 3) наименьшее число Q3Min, для которого P(Y⩽Q3Min)⩾0,75; 4) наибольшее число Q3Ma, для которого P(Y⩾Q3Max)⩾0,25.':
     A = '''
-E = 0.00000001
 dct = defaultdict(int)
 
-ch = list(range(1, 129))
+ch = list(range(1, 41))
 
 for X in ch:
-  dct[abs(X-89.5)] +=1/len(ch)
+  dct[abs(X-29.5)] +=1/len(ch)
 
 
 Y = rv_discrete(values=(list(dct.keys()), list(dct.values())))
+xk = Y.xk.tolist()
 Q1mn = []
 Q3mn = []
 Q1mx = []
@@ -2536,11 +2535,10 @@ for i in dct.keys():
       Q1mn.append(i)
     if Y.cdf(i) >= 0.75:
       Q3mn.append(i)
-    if Y.sf(i - E) >= 0.75:
+    if round(Y.sf(xk[xk.index(i)-1]), 5) >= 0.75:
       Q1mx.append(i)
-    if Y.sf(i - E) >= 0.25:
+    if round(Y.sf(xk[xk.index(i)-1]), 5) >= 0.25:
       Q3mx.append(i)
-print(Y.sf(16.5))
 print(f'Q1Min = {min(Q1mn)}')
 print(f'Q1Max = {max(Q1mx)}')
 print(f'Q3Min = {min(Q3mn)}')
