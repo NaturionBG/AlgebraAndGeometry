@@ -471,9 +471,9 @@ good/tot
 A_Probability = 0.1
 B_Probability = 0.4
 C_Probability = 0.9
-A = [True]*(10*A_Probability) + [False]*(10 - 10*A_Probability)
-B = [True]*(10*B_Probability) + [False]*(10 - 10*B_Probability)
-C = [True]*(10*C_Probability) + [False]*(10 - 10*C_Probability)
+A = [True]*int(10*A_Probability) + [False]*int(10 - 10*A_Probability)#int
+B = [True]*int(10*B_Probability) + [False]*int(10 - 10*B_Probability)#int
+C = [True]*int(10*C_Probability) + [False]*int(10 - 10*C_Probability)#int
 good=0
 w_criterion = 0
 tot=0
@@ -619,7 +619,7 @@ amount = 1000
 probability = 0.001
 dist = poisson(amount*probability)
 
-p.pmf(errors)
+dist.pmf(errors)
     '''
   elif snippet in 'Банк совершил n транзакций по кредитным картам. Вероятность того, что транзакция будет ошибочной. Используя приближенную формулу для числа успехов в схеме Бернулли, найдите вероятность того, что среди этих n транзакций имеется не более ошибочных. В решении необходимо проверить условие применимости приближенной формулы.' or snippet in 'Банк совершил n транзакций при ненадежной связи с сервером. Вероятность того, что транзакция будет ошибочной, равна. Используя приближенную формулу для числа успехов в схеме Бернулли, найдите вероятность того, что среди этих n транзакций имеется не более ошибочных. В решении необходимо проверить условие применимости приближенной формулы.':
     A = '''
@@ -1139,7 +1139,7 @@ X = norm(Ex, varx**0.5)
 Y = norm(Ey, vary**0.5)
 XY = multivariate_normal(mean=[Ex, Ey], cov=[[varx, corr*varx**0.5 * vary**0.5], [corr*varx**0.5 * vary**0.5, vary]])
 
-print(round((X.cdf(4) - XY.cdf([x_value, y_value])) + (Y.cdf(y_value) - XY.cdf([x_value, y_value])),4))
+print(round((X.cdf(x_value) - XY.cdf([x_value, y_value])) + (Y.cdf(y_value) - XY.cdf([x_value, y_value])),4))
 
 #----------------------------------------------------------------------------------------
 # P((X-x1_value)(X-x2_value)(Y-y_value))
@@ -1532,11 +1532,11 @@ print(f'STANDART DEVIATION OF P: {rrstr(VarP**0.5 * 100, 2)}')
 from sympy import *
 
 EA = 0.02
-EB = 0.02
+EB = 0.03
 EC = 0.03
 
 VarA = 0.03**2
-VarB = 0.04**2
+VarB = 0.05**2
 VarC = 0.05**2
 
 x, y, z = symbols('x, y, z')
@@ -1552,6 +1552,7 @@ eq2 = Eq(FY, 0)
 solution = solve([eq1, eq2])
 z = 1 - solution[x] - solution[y]
 Ep = solution[x]*EA + solution[y]*EB + z*EC
+Ep*100
     '''
   elif snippet in 'Математическое ожидание доходности акций компаний А и В составляет % и %, при этом стандартное отклонение доходности равно % и %, соответственно. Также известен коэффициент корреляции ρAB доходностей акций А и В, ρAB=. Найдите (короткие позиции допускаются): 1) доли акций А и В в портфеле с минимальной дисперсией доходности; 2) ожидаемую доходность и стандартное отклонение доходности такого портфеля.':
     A = '''
@@ -1742,9 +1743,9 @@ good/tot
 A_Probability = 0.1
 B_Probability = 0.4
 C_Probability = 0.9
-A = [True]*(10*A_Probability) + [False]*(10 - 10*A_Probability)
-B = [True]*(10*B_Probability) + [False]*(10 - 10*B_Probability)
-C = [True]*(10*C_Probability) + [False]*(10 - 10*C_Probability)
+A = [True]*int(10*A_Probability) + [False]*int(10 - 10*A_Probability)#int
+B = [True]*int(10*B_Probability) + [False]*int(10 - 10*B_Probability)#int
+C = [True]*int(10*C_Probability) + [False]*int(10 - 10*C_Probability)#int
 good=0
 w_criterion = 0
 tot=0
@@ -1890,7 +1891,7 @@ amount = 1000
 probability = 0.001
 dist = poisson(amount*probability)
 
-p.pmf(errors)
+dist.pmf(errors)
     '''
   elif snippet in 'Банк совершил n транзакций по кредитным картам. Вероятность того, что транзакция будет ошибочной. Используя приближенную формулу для числа успехов в схеме Бернулли, найдите вероятность того, что среди этих n транзакций имеется не более ошибочных. В решении необходимо проверить условие применимости приближенной формулы.' or snippet in 'Банк совершил n транзакций при ненадежной связи с сервером. Вероятность того, что транзакция будет ошибочной, равна. Используя приближенную формулу для числа успехов в схеме Бернулли, найдите вероятность того, что среди этих n транзакций имеется не более ошибочных. В решении необходимо проверить условие применимости приближенной формулы.':
     A = '''
@@ -2412,7 +2413,7 @@ X = norm(Ex, varx**0.5)
 Y = norm(Ey, vary**0.5)
 XY = multivariate_normal(mean=[Ex, Ey], cov=[[varx, corr*varx**0.5 * vary**0.5], [corr*varx**0.5 * vary**0.5, vary]])
 
-print(round((X.cdf(4) - XY.cdf([x_value, y_value])) + (Y.cdf(y_value) - XY.cdf([x_value, y_value])),4))
+print(round((X.cdf(x_value) - XY.cdf([x_value, y_value])) + (Y.cdf(y_value) - XY.cdf([x_value, y_value])),4))
 
 #----------------------------------------------------------------------------------------
 # P((X-x1_value)(X-x2_value)(Y-y_value))
@@ -2435,9 +2436,7 @@ X = norm(Ex, sigX)
 Y = norm(Ey, sigY)
 XY = multivariate_normal(mean=mean, cov=Cov)
 
-print(round(XY.cdf([x1_value, y_value]) + (Y.cdf(y_value) - XY.cdf([x2_value, y_value])) + \
-((X.cdf(x2_value) - XY.cdf([x2_value, y_value])) - \
-(X.cdf(x1_value) - XY.cdf([x1_value, y_value]))),4))   
+print(round(XY.cdf([x1_value, y_value]) + (Y.cdf(y_value) - XY.cdf([x2_value, y_value])) + ((X.cdf(x2_value) - XY.cdf([x2_value, y_value])) - (X.cdf(x1_value) - XY.cdf([x1_value, y_value]))),4))   
     '''
   elif snippet in 'Случайный вектор (X,Y) имеет плотность распределения fX,Y(x,y) Найдите: 1) математическое ожидание E(X); 2) математическое ожидание E(Y); 3) дисперсию Var(X); 4) дисперсию Var(Y); 5) ковариацию Cov(X,Y); 6) коэффициент корреляции ρ(X,Y).':
     A='''
@@ -2786,11 +2785,11 @@ print(f'STANDART DEVIATION OF P: {rrstr(VarP**0.5 * 100, 2)}')
 from sympy import *
 
 EA = 0.02
-EB = 0.02
+EB = 0.03
 EC = 0.03
 
 VarA = 0.03**2
-VarB = 0.04**2
+VarB = 0.05**2
 VarC = 0.05**2
 
 x, y, z = symbols('x, y, z')
@@ -2806,6 +2805,7 @@ eq2 = Eq(FY, 0)
 solution = solve([eq1, eq2])
 z = 1 - solution[x] - solution[y]
 Ep = solution[x]*EA + solution[y]*EB + z*EC
+Ep*100
     '''
   elif snippet in 'Математическое ожидание доходности акций компаний А и В составляет % и %, при этом стандартное отклонение доходности равно % и %, соответственно. Также известен коэффициент корреляции ρAB доходностей акций А и В, ρAB=. Найдите (короткие позиции допускаются): 1) доли акций А и В в портфеле с минимальной дисперсией доходности; 2) ожидаемую доходность и стандартное отклонение доходности такого портфеля.':
     A = '''
